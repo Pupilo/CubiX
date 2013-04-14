@@ -41,87 +41,73 @@
 
 //------------------------------------------------------------------------------------------------------------------
 /*Rotaç~ao frontal: Sentido da rotaçao: Matriz 1 a Matri 4*/
-/*cubicRF = cubo para rotaç~ao frontal.*/
+/*cubicRF = cubo para rotaç~ao frontal.
+Revisado: 14 abr 2013 - Willian.A.Mayan*/
 void from_rotation(Cubic *cubicRF, long long int columns){ 
 
-    Matrix *auxiliar;
-    long long int i, j;                                     //Variaveis auxiliares para loop
+    Matrix *auxiliar;       //Matriz auxiliar
+    long long int i, j;     //Variaveis auxiliares para loop
 
     printf("\n\nNumero de coulnas: %d\n",cubicRF->Side_A->columns );
     printf("Numero da coluna para rotaçao: %d\n", columns);
 
-    //auxiliar = vector_dinamic(cubicRF->Side_A->columns);   //Criaçao do vetor auxiliar
     auxiliar = init(0,columns);
 
-    //Preenchendo vetor auxiliar
     for(i = 0 ; i < cubicRF->Side_A->columns ; i++){        //Auxiliar = Side_A
-        //printf("Original: %d: %c \n",i, cubicRF->Side_A->matrix[i][columns]);
         auxiliar->matrix[0][i] = cubicRF->Side_A->matrix[i][columns]; //error
     }
-
     for(i = 0 ; i < cubicRF->Side_A->columns ; i++){        //Side_A = Side_D
-        //printf("Original: %d: %c \n",i, cubicRF->Side_A->matrix[i][columns]);
-        cubicRF->Side_A->matrix[i][columns] = cubicRF->Side_D->matrix[i][columns]; //error
+        cubicRF->Side_A->matrix[i][columns] = cubicRF->Side_D->matrix[i][columns];
     }
-
     for(i = 0 ; i < cubicRF->Side_D->columns ; i++){        //Side_D = Side_C
-        //printf("Original: %d: %c \n",i, cubicRF->Side_D->matrix[i][columns]);
-        cubicRF->Side_D->matrix[i][columns] = cubicRF->Side_C->matrix[i][columns]; //error
+        cubicRF->Side_D->matrix[i][columns] = cubicRF->Side_C->matrix[i][columns];
     }
-
     for(i = 0 ; i < cubicRF->Side_C->columns ; i++){        //Side_C = Side_B
-        //printf("Original: %d: %c \n",i, cubicRF->Side_D->matrix[i][columns]);
-        cubicRF->Side_C->matrix[i][columns] = cubicRF->Side_B->matrix[i][columns]; //error
+        cubicRF->Side_C->matrix[i][columns] = cubicRF->Side_B->matrix[i][columns];
     }
-
     for(i = 0 ; i < cubicRF->Side_B->columns ; i++){        //Side_B = auxiliar
-        //printf("Original: %d: %c \n",i, cubicRF->Side_D->matrix[i][columns]);
-        cubicRF->Side_B->matrix[i][columns] = auxiliar->matrix[0][i]; //error
+        cubicRF->Side_B->matrix[i][columns] = auxiliar->matrix[0][i];
     }
 }
 
 //------------------------------------------------------------------------------------------------------------------
 /*Rotaç~ao frontal: Sentido da rotaçao: Matriz 4 a Matri 1*/
-/*cubicRF = cubo para rotaç~ao frontal inversa.*/
+/*cubicRF = cubo para rotaç~ao frontal inversa.
+Revisado: 14 abr 2013 - Willian.A.Mayan*/
 void from_rotation_invers(Cubic *cubicRF, long long int columns){ 
 
     Matrix *auxiliar;
-    long long int i, j;                                     //Variaveis auxiliares para loop
+    long long int i, j;     //Variaveis auxiliares para loop
 
-    printf("\n\nNumero de coulnas: %d\n",cubicRF->Side_A->columns );
-    printf("Numero da coluna para rotaçao: %d\n", columns);
+    printf("\n\nNumero de coulnas: %d\n",cubicRF->Side_A->columns );    //[DEBUG]
+    printf("Numero da coluna para rotaçao: %d\n", columns);             //[DEBUG]
 
-    //auxiliar = vector_dinamic(cubicRF->Side_A->columns);   //Criaçao do vetor auxiliar
     auxiliar = init(0,columns);
 
-    //Preenchendo vetor auxiliar
     for(i = 0 ; i < cubicRF->Side_D->columns ; i++){        //Auxiliar = Side_D
-        auxiliar->matrix[0][i] = cubicRF->Side_D->matrix[i][columns]; //error
+        auxiliar->matrix[0][i] = cubicRF->Side_D->matrix[i][columns];
     }
-
     for(i = 0 ; i < cubicRF->Side_D->columns ; i++){        //Side_D = Side_A
-        cubicRF->Side_D->matrix[i][columns] = cubicRF->Side_A->matrix[i][columns]; //error
+        cubicRF->Side_D->matrix[i][columns] = cubicRF->Side_A->matrix[i][columns];
     }
-
     for(i = 0 ; i < cubicRF->Side_A->columns ; i++){        //Side_A = Side_B
-        cubicRF->Side_A->matrix[i][columns] = cubicRF->Side_B->matrix[i][columns]; //error
+        cubicRF->Side_A->matrix[i][columns] = cubicRF->Side_B->matrix[i][columns];
     }
-
     for(i = 0 ; i < cubicRF->Side_B->columns ; i++){        //Side_B = Side_C
-        cubicRF->Side_B->matrix[i][columns] = cubicRF->Side_C->matrix[i][columns]; //error
+        cubicRF->Side_B->matrix[i][columns] = cubicRF->Side_C->matrix[i][columns];
     }
-
-    for(i = 0 ; i < cubicRF->Side_D->columns ; i++){        //Side_D = auxiliar
-        cubicRF->Side_D->matrix[i][columns] = auxiliar->matrix[0][i]; //error
+    for(i = 0 ; i < cubicRF->Side_C->columns ; i++){        //Side_C = auxiliar
+        cubicRF->Side_C->matrix[i][columns] = auxiliar->matrix[0][i];
     }
 }
 
 //------------------------------------------------------------------------------------------------------------------
-/*Rotaçao no eixo X*/
+/*Rotaçao no eixo X
+Requer Revis~ao*/
 void X_rotation(Cubic *cubicRF, long long int rows){
 
     Matrix *auxiliar;
-    long long int i, j;                                     //Variaveis auxiliares para loop
+    long long int i, j;     //Variaveis auxiliares para loop
 
     printf("\n\nNumero de coulnas: %d\n",cubicRF->Side_E->rows );
     printf("Numero da coluna para rotaçao: %d\n", rows);
@@ -140,17 +126,46 @@ errada com base na logica da inserç~ao dos elementos das matrizes*/
     for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Side_E = Side_B
         cubicRF->Side_E->matrix[rows][i] = cubicRF->Side_B->matrix[rows][i]; //error
     }
-
     for(i = 0 ; i < cubicRF->Side_B->rows ; i++){        //Side_B = Side_F
         cubicRF->Side_B->matrix[rows][i] = cubicRF->Side_F->matrix[rows][i]; //error
     }
-
     for(i = 0 ; i < cubicRF->Side_F->rows ; i++){        //Side_F = Side_D
         cubicRF->Side_F->matrix[rows][i] = cubicRF->Side_D->matrix[rows][i]; //error
     }
-
     for(i = 0 ; i < cubicRF->Side_D->rows ; i++){        //Side_D = auxiliar
         cubicRF->Side_D->matrix[rows][i] = auxiliar->matrix[0][i]; //error
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------
+/*Rotaçao inversa no eixo X
+Requer Revis~ao*/
+void X_rotation_invers(Cubic *cubicRF, long long int rows){
+
+    Matrix *auxiliar;
+    long long int i, j;     //Variaveis auxiliares para loop
+
+    printf("\n\nNumero de coulnas: %d\n",cubicRF->Side_E->rows );
+    printf("Numero da coluna para rotaçao: %d\n", rows);
+
+    auxiliar = init(0,rows);
+    
+    //Preenchendo vetor auxiliar
+    for(i = 0 ; i < cubicRF->Side_D->rows ; i++){        //Auxiliar = Side_D
+        auxiliar->matrix[0][i] = cubicRF->Side_D->matrix[rows][i]; //error
+    }
+
+    for(i = 0 ; i < cubicRF->Side_D->rows ; i++){        //Side_D = Side_F
+        cubicRF->Side_D->matrix[rows][i] = cubicRF->Side_F->matrix[rows][i]; //error
+    }
+    for(i = 0 ; i < cubicRF->Side_F->rows ; i++){        //Side_F = Side_B
+        cubicRF->Side_F->matrix[rows][i] = cubicRF->Side_B->matrix[rows][i]; //error
+    }
+    for(i = 0 ; i < cubicRF->Side_B->rows ; i++){        //Side_B = Side_E
+        cubicRF->Side_B->matrix[rows][i] = cubicRF->Side_E->matrix[rows][i]; //error
+    }
+    for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Side_E = auxiliar
+        cubicRF->Side_E->matrix[rows][i] = auxiliar->matrix[0][i]; //error
     }
 }
 

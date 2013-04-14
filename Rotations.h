@@ -29,14 +29,19 @@
 //------------------------------------------------------------------------------------------------------------------
 /*Rotaçoes*/
 
-/*Rotaçao frontal*/
+/*Rotaçao frontal
+Revisado: 14 abr 2013 - Willian.A.Mayan*/
 void from_rotation(Cubic *cubicRF, long long int columns);
 
-/*Rotaçao frontal inverso*/
+/*Rotaçao frontal inverso
+Revisado: 14 abr 2013 - Willian.A.Mayan*/
 void from_rotation_invers(Cubic *cubicRF, long long int columns);
 
 /*Rotaçao no eixo X*/
 void X_rotation(Cubic *cubicRF, long long int rows);
+
+/*Rotaçao inversa no eixo X*/
+void X_rotation_invers(Cubic *cubicRF, long long int rows);
 
 /*Salva o cubo criptografado em arquivo*/
 void save_cubic_revers(long long int size, Cubic *cubicSave);
