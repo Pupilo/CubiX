@@ -111,9 +111,10 @@ int calculate_matrix(long valor){
 
         return resultado; //retorna a ordem da matriz
     }
-    printf("5. Valor de Qtd: %d\n", inteiro);
+    printf("5. Valor de Qtd: %f\n", inteiro);
     //if (Qtd == 1)
-        return (int)inteiro;
+        inteiro = (int)inteiro;
+        return inteiro;
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -276,78 +277,4 @@ void _delete_cubic(Cubic *cubo){
     _delete(cubo->Side_D);
     _delete(cubo->Side_E);
     _delete(cubo->Side_F);
-}
-
-//------------------------------------------------------------------------------------------------------------------
-/*                                            Salvar em arquivo                                                   */
-//------------------------------------------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------------------------------------------
-/*Salva o cubo criptografado em arquivo
-Revisado: 14 abr 2013 - Willian.A.Mayan - PENDENTE*/
-void save_cubic(Cubic *cubicSave){
-    
-    long long int i, j;
-
-    FILE *texto_cifrado; //Mudar nome da variavel
-
-    texto_cifrado = fopen("texto_cifrado.cub", "w+b");
-    printf("Salvando arquivo:\n"); //[DEBUG]
-    //fwrite(&nome,sizeof(nome),1,arquivo);
-    //Matriz A
-    for(i = 0 ; i < cubicSave->Side_A->rows ; i++){
-        for(j = 0 ; j < cubicSave->Side_A->columns ; j++){
-            fwrite( &cubicSave->Side_A->matrix[i][j], sizeof(cubicSave->Side_A->matrix[i][j]) , sizeof(cubicSave->Side_A->matrix[i][j]), texto_cifrado );
-        }
-        /*A linha abaixo estava incrementando ^@ no arquivo, o que tornava o arquivo maior e sua decriptografia inviavel, analisar este pedaço*/
-        //fwrite( &cubicSave->Side_A->matrix[i][j], sizeof(cubicSave->Side_A->matrix[i][j]) , sizeof(cubicSave->Side_A->matrix[i][j]), texto_cifrado  );
-    }
-    
-    //Matriz B
-    for(i = 0 ; i < cubicSave->Side_B->rows ; i++){
-        for(j = 0 ; j < cubicSave->Side_B->columns ; j++){
-            fwrite( &cubicSave->Side_B->matrix[i][j], sizeof(cubicSave->Side_B->matrix[i][j]) , 1, texto_cifrado );
-        }
-        /*A linha abaixo estava incrementando ^@ no arquivo, o que tornava o arquivo maior e sua decriptografia inviavel, analisar este pedaço*/
-        //fwrite( &cubicSave->Side_B->matrix[i][j], sizeof(cubicSave->Side_B->matrix[i][j]) , 1, texto_cifrado );
-    }
-    
-    //Matriz C
-    for(i = 0 ; i < cubicSave->Side_C->rows ; i++){
-        for(j = 0 ; j < cubicSave->Side_C->columns ; j++){
-            fwrite( &cubicSave->Side_C->matrix[i][j], sizeof(cubicSave->Side_C->matrix[i][j]) , 1, texto_cifrado );
-        }
-        /*A linha abaixo estava incrementando ^@ no arquivo, o que tornava o arquivo maior e sua decriptografia inviavel, analisar este pedaço*/
-        //fwrite( &cubicSave->Side_C->matrix[i][j], sizeof(cubicSave->Side_C->matrix[i][j]) , 1, texto_cifrado );
-    }
-    
-    //Matriz D
-    for(i = 0 ; i < cubicSave->Side_D->rows ; i++){
-        for(j = 0 ; j < cubicSave->Side_D->columns ; j++){
-            fwrite( &cubicSave->Side_D->matrix[i][j], sizeof(cubicSave->Side_D->matrix[i][j]) , 1, texto_cifrado );
-        }
-        /*A linha abaixo estava incrementando ^@ no arquivo, o que tornava o arquivo maior e sua decriptografia inviavel, analisar este pedaço*/
-        //fwrite( &cubicSave->Side_D->matrix[i][j], sizeof(cubicSave->Side_D->matrix[i][j]) , 1, texto_cifrado );
-    }
-    
-    //Matriz E
-    for(i = 0 ; i < cubicSave->Side_E->rows ; i++){
-        for(j = 0 ; j < cubicSave->Side_E->columns ; j++){
-            fwrite( &cubicSave->Side_E->matrix[i][j], sizeof(cubicSave->Side_E->matrix[i][j]) , 1, texto_cifrado );
-        }
-        /*A linha abaixo estava incrementando ^@ no arquivo, o que tornava o arquivo maior e sua decriptografia inviavel, analisar este pedaço*/
-        //fwrite( &cubicSave->Side_E->matrix[i][j], sizeof(cubicSave->Side_E->matrix[i][j]) , 1, texto_cifrado );
-    }
-    
-    //Matriz F
-    for(i = 0 ; i < cubicSave->Side_F->rows ; i++){
-        for(j = 0 ; j < cubicSave->Side_F->columns ; j++){
-            fwrite( &cubicSave->Side_F->matrix[i][j], sizeof(cubicSave->Side_F->matrix[i][j]) , 1, texto_cifrado );
-        }
-        /*A linha abaixo estava incrementando ^@ no arquivo, o que tornava o arquivo maior e sua decriptografia inviavel, analisar este pedaço*/
-        //fwrite( &cubicSave->Side_F->matrix[i][j], sizeof(cubicSave->Side_F->matrix[i][j]) , 1, texto_cifrado );
-    }
-    printf("\n Matrizes OK\n");
-    fcloseall(texto_cifrado);
-    printf("\n Fechou o arquivo\n");
 }

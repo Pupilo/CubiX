@@ -90,7 +90,3 @@ Cubic* cubicX(long long int ordem, char *argv);
 
 /*Funç~ao que preenche matrizes recebendo um ponteiro para o arquivo, retorna um ponteiro de arquivo*/
 FILE* P_cubicX(FILE *pointer, Matrix *matriX, long long int ordem);
-
-//------------------------------------------------------------------------------------------------------------------
-/*Salva o cubo criptografado em arquivo*/
-void save_cubic(Cubic *cubicSave);

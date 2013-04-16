@@ -72,14 +72,20 @@ int main(int argc, char *argv[]){
 				Cubic* Cubic_Text = cubicX(ordem_matriz,texto_puro);
 				
 				//showCubic(Cubic_Text);		//Matriz Original
+
+				//Criptografia
 				from_rotation(Cubic_Text, 1);	//Rotaç~ao frontal
 				X_rotation(Cubic_Text, 1);		//Rotaç~ao lateral
-				showCubic(Cubic_Text);			//Matriz Criptografada
 				
-				save_cubic(Cubic_Text);			//salvar em arquivo
+				//Matriz Criptografada
+				showCubic(Cubic_Text);
+				
+				//salvar em arquivo
+				save_cubic(Cubic_Text);
 
-				_delete_cubic(Cubic_Text);		//Limpar memoria
-				free(Cubic_Text);				//Limpar memoria
+				//Limpa Memoria
+				_delete_cubic(Cubic_Text);
+				free(Cubic_Text);
 
 				printf("Criptografia finalizada com sucesso!!\n");	//[DEBUG]
 
@@ -90,22 +96,25 @@ int main(int argc, char *argv[]){
 				ordem_matriz = calculate_matrix(size);
 				
 				printf("\n###########################");			//[DEBUG]
-				printf("\nOrdem da matriz%d\n\n", ordem_matriz );	//[DEBUG]
+				printf("\nOrdem da matriz %d\n", ordem_matriz );	//[DEBUG]
 				
 				Cubic* Cubic_Cript = cubicX(ordem_matriz,texto_puro);
 
-				printf("\n\n#########################################################\nCubo criptografado\n");//[DEBUG]
+				printf("###########################\nCubo criptografado\n###########################\n");//[DEBUG]
 				showCubic(Cubic_Cript);
 				
-				X_rotation_invers(Cubic_Text, 1);		//Rotaç~ao lateral inversa
+
+				//Iniciando testes
+				X_rotation_invers(Cubic_Cript, 1);		//Rotaç~ao lateral inversa
 				from_rotation_invers(Cubic_Cript, 1);//iniciar rotaçao
 
-				printf("\n\n#########################################################\nCubo decriptografado\n");//[DEBUG]
+				printf("###########################\nCubo decriptografado\n###########################\n");//[DEBUG]
 				showCubic(Cubic_Cript);
 				
 				save_cubic_revers(217, Cubic_Cript);	//salvar em arquivo   //Rever esta funç~ao
 				_delete_cubic(Cubic_Cript);				//Limpar memoria 
 				free(Cubic_Cript);						//Limpar memoria 
+				printf("decriptografia finalizada com sucesso!!\n");	//[DEBUG]
 		break;
 	}
 return 0;
