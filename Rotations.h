@@ -20,7 +20,7 @@
 
 
 /*####################################################################################
-#   engine.h -> old version -> Rubik.h //refazer
+#   engine.h -> old version -> CubiX.h //refazer
 #   Autor: Willian.A.Mayan
 #   Data: 02-03-2013
 #   Versao: 0.0.4
@@ -45,6 +45,12 @@ void X_rotation(Cubic *cubicRF, long long int rows);
 /*Rotaçao inversa no eixo X
 Revisado: 15 abr 2013 - Willian.A.Mayan*/
 void X_rotation_invers(Cubic *cubicRF, long long int rows);
+
+/*Rotaçao no eixo Y*/
+void Y_rotation(Cubic *cubicRF, long long int rows);
+
+/*Rotaçao inversa no eixo Y*/
+void Y_rotation_invers(Cubic *cubicRF, long long int rows);
 
 //------------------------------------------------------------------------------------------------------------------
 /*                                            Salvar em arquivo                                                   */

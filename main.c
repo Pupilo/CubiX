@@ -75,10 +75,11 @@ int main(int argc, char *argv[]){
 
 				//Criptografia
 				from_rotation(Cubic_Text, 1);	//Rotaç~ao frontal
-				X_rotation(Cubic_Text, 1);		//Rotaç~ao lateral
+				X_rotation(Cubic_Text, 1);		//Rotaç~ao horizontal
+				//Y_rotation(Cubic_Text, 1);		//Rotaç~ao vertical
 				
 				//Matriz Criptografada
-				showCubic(Cubic_Text);
+				//showCubic(Cubic_Text);		//[DEBUG]
 				
 				//salvar em arquivo
 				save_cubic(Cubic_Text);
@@ -95,26 +96,24 @@ int main(int argc, char *argv[]){
 				size = file_size(texto_puro); 
 				ordem_matriz = calculate_matrix(size);
 				
-				printf("\n###########################");			//[DEBUG]
 				printf("\nOrdem da matriz %d\n", ordem_matriz );	//[DEBUG]
 				
 				Cubic* Cubic_Cript = cubicX(ordem_matriz,texto_puro);
 
-				printf("###########################\nCubo criptografado\n###########################\n");//[DEBUG]
-				showCubic(Cubic_Cript);
-				
+				//printf("###########################\nCubo criptografado\n###########################\n");//[DEBUG]
+				//showCubic(Cubic_Cript);			//[DEBUG]
 
 				//Iniciando testes
 				X_rotation_invers(Cubic_Cript, 1);		//Rotaç~ao lateral inversa
 				from_rotation_invers(Cubic_Cript, 1);//iniciar rotaçao
 
-				printf("###########################\nCubo decriptografado\n###########################\n");//[DEBUG]
-				showCubic(Cubic_Cript);
+				//printf("###########################\nCubo decriptografado\n###########################\n");//[DEBUG]
+				//showCubic(Cubic_Cript);				//[DEBUG]
 				
-				save_cubic_revers(217, Cubic_Cript);	//salvar em arquivo   //Rever esta funç~ao
+				save_cubic_revers(size, Cubic_Cript);	//salvar em arquivo   //Rever esta funç~ao
 				_delete_cubic(Cubic_Cript);				//Limpar memoria 
 				free(Cubic_Cript);						//Limpar memoria 
-				printf("decriptografia finalizada com sucesso!!\n");	//[DEBUG]
+				printf("Decriptografia finalizada com sucesso!!\n");	//[DEBUG]
 		break;
 	}
 return 0;

@@ -20,7 +20,7 @@
 
 
 /*####################################################################################
-#   engine.h -> old version -> Rubik.h //refazer
+#   engine.h -> old version -> CubiX.h //refazer
 #   Autor: Willian.A.Mayan
 #   Data: 02-03-2013
 #   Versao: 0.0.4
@@ -121,7 +121,6 @@ void X_rotation(Cubic *cubicRF, long long int rows){
     }
 
     for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Side_E = Side_B
-        printf("cubo: %c\n",cubicRF->Side_E->matrix[rows][i] );
         cubicRF->Side_E->matrix[rows][i] = cubicRF->Side_B->matrix[rows][i]; //error
     }
     for(i = 0 ; i < cubicRF->Side_B->rows ; i++){        //Side_B = Side_F
@@ -165,6 +164,45 @@ void X_rotation_invers(Cubic *cubicRF, long long int rows){
     for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Side_E = auxiliar
         cubicRF->Side_E->matrix[rows][i] = auxiliar->matrix[0][i]; //error
     }
+}
+
+//------------------------------------------------------------------------------------------------------------------
+/*Rotaçao no eixo Y
+Copia de x_rotation*/
+void Y_rotation(Cubic *cubicRF, long long int rows){
+
+    Matrix *auxiliar;
+    long long int i, j;     //Variaveis auxiliares para loop
+
+    printf("\n\nNumero de coulnas: %d\n",cubicRF->Side_E->rows );    //[DEBUG]
+    printf("Numero da coluna para rotaçao: %d\n", rows);            //[DEBUG]
+
+    //auxiliar = vector_dinamic(cubicRF->Side_A->rows);   //Criaçao do vetor auxiliar
+    auxiliar = init(0,rows);
+    
+    //Preenchendo vetor auxiliar
+    for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Auxiliar = Side_E
+        auxiliar->matrix[0][i] = cubicRF->Side_E->matrix[rows][i]; //error
+    }
+
+    for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Side_E = Side_B
+        cubicRF->Side_E->matrix[rows][i] = cubicRF->Side_B->matrix[rows][i]; //error
+    }
+    for(i = 0 ; i < cubicRF->Side_B->rows ; i++){        //Side_B = Side_F
+        cubicRF->Side_B->matrix[rows][i] = cubicRF->Side_F->matrix[rows][i]; //error
+    }
+    for(i = 0 ; i < cubicRF->Side_F->rows ; i++){        //Side_F = Side_D
+        cubicRF->Side_F->matrix[rows][i] = cubicRF->Side_D->matrix[rows][i]; //error
+    }
+    for(i = 0 ; i < cubicRF->Side_D->rows ; i++){        //Side_D = auxiliar
+        cubicRF->Side_D->matrix[rows][i] = auxiliar->matrix[0][i]; //error
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------
+/*Rotaçao inversa no eixo Y*/
+void Y_rotation_invers(Cubic *cubicRF, long long int rows){
+
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -262,7 +300,6 @@ void save_cubic_revers(long long int size, Cubic *cubicSave){
             }
             size_file++;
         }
-        fwrite( &cubicSave->Side_A->matrix[i][j], sizeof(cubicSave->Side_A->matrix[i][j]) , sizeof(cubicSave->Side_A->matrix[i][j]), texto_cifrado  );
     }
     
     //Matriz B
@@ -275,7 +312,6 @@ void save_cubic_revers(long long int size, Cubic *cubicSave){
             }
             size_file++;
         }
-        fwrite( &cubicSave->Side_B->matrix[i][j], sizeof(cubicSave->Side_B->matrix[i][j]) , 1, texto_cifrado );
     }
     
     //Matriz C
@@ -288,7 +324,6 @@ void save_cubic_revers(long long int size, Cubic *cubicSave){
             }
             size_file++;
         }
-        fwrite( &cubicSave->Side_C->matrix[i][j], sizeof(cubicSave->Side_C->matrix[i][j]) , 1, texto_cifrado );
     }
     
     //Matriz D
@@ -301,7 +336,6 @@ void save_cubic_revers(long long int size, Cubic *cubicSave){
             }
             size_file++;
         }
-        fwrite( &cubicSave->Side_D->matrix[i][j], sizeof(cubicSave->Side_D->matrix[i][j]) , 1, texto_cifrado );
     }
     
     //Matriz E
@@ -314,7 +348,6 @@ void save_cubic_revers(long long int size, Cubic *cubicSave){
             }
             size_file++;
         }
-        fwrite( &cubicSave->Side_E->matrix[i][j], sizeof(cubicSave->Side_E->matrix[i][j]) , 1, texto_cifrado );
     }
     
     //Matriz F
@@ -327,9 +360,8 @@ void save_cubic_revers(long long int size, Cubic *cubicSave){
             }
             size_file++;
         }
-        fwrite( &cubicSave->Side_F->matrix[i][j], sizeof(cubicSave->Side_F->matrix[i][j]) , 1, texto_cifrado );
     }
-    printf("\n Matrizes OK\n");
+    printf("\n Matrizes OK");
     fcloseall(texto_cifrado);
     printf("\n Fechou o arquivo\n");
 }
