@@ -5,8 +5,7 @@ Cubix é um algoritmo de criptografia baseado no cubo de Rubik, onde transforma 
 em uma representação de cubo utilizando matrizes. Se encontra em desenvolvimento, não estavel.
 
 Modo de compilação:<br>
-./compilar.sh<br>
-/* Reescrever para utilizar cmake*/<br>
+make all
 
 Modo de uso:
 ./main arquivo_de_texto_puro<br>
