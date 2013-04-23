@@ -71,7 +71,7 @@ int main(int argc, char *argv[]){
 				ordem_matriz = calculate_matrix(size);
 				Cubic* Cubic_Text = cubicX(ordem_matriz,texto_puro);
 				
-				//showCubic(Cubic_Text);		//Matriz Original
+				showCubic(Cubic_Text);		//Matriz Original
 
 				//Criptografia
 				from_rotation(Cubic_Text, 1);	//Rotaç~ao frontal
@@ -79,7 +79,7 @@ int main(int argc, char *argv[]){
 				//Y_rotation(Cubic_Text, 1);		//Rotaç~ao vertical
 				
 				//Matriz Criptografada
-				//showCubic(Cubic_Text);		//[DEBUG]
+				showCubic(Cubic_Text);		//[DEBUG]
 				
 				//salvar em arquivo
 				save_cubic(Cubic_Text);
