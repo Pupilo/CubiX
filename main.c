@@ -59,11 +59,14 @@ int main(int argc, char *argv[]){
 
 	/*Inicio*/
 	treatment(argc, argv); //Testa parametros recebidos
-	texto_puro = argv[1];
-
-	/*Menu de opcoes*/
-	menu();
-	scanf("%d",&op);
+	if(strcmp(argv[1],"-c") == 0) {
+		op = 1;
+	} else if(strcmp(argv[1],"-d") == 0) {
+                op = 2;
+        } else {
+		return -1;
+	}
+	texto_puro = argv[2];
 
 	switch(op){
 		case 1: 
