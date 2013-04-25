@@ -40,13 +40,13 @@
 /*Funç~ao que recebe os parametros passado pelo usuario e realiza testes*/
 int treatment(int argc, char **argv){
 
-    if(argc == 2){
+    if(argc == 3){
         return 1;
     }
     else
     {
-        printf("Nao foi recebido um arquivo como parametro\nPrograma encerrado!!\n");
-        exit(0);
+        printf("\nCubiX usage: ./main [-c | -d] filename");
+	exit(0);
     }
 }
 
