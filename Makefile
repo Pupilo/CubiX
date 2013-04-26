@@ -7,8 +7,8 @@ CFLAGS = -c -g
 CC = gcc
 
 all:
-    $(CC) $(CFLAGS) Engine.c
-    $(CC) $(CFLAGS) Menu.c
+	$(CC) $(CFLAGS) Engine.c
+	$(CC) $(CFLAGS) Menu.c
 	$(CC) $(CFLAGS) Rotations.c
 	$(CC) $(FLAGS) $(MAIN_OBJ) $(LIBS_OBJS) -o CubiX -lm
 clean:
