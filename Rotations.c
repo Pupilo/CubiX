@@ -174,35 +174,52 @@ void Y_rotation(Cubic *cubicRF, long long int rows){
     Matrix *auxiliar;
     long long int i, j;     //Variaveis auxiliares para loop
 
-    printf("\n\nNumero de coulnas: %d\n",cubicRF->Side_E->rows );    //[DEBUG]
-    printf("Numero da coluna para rotaçao: %d\n", rows);            //[DEBUG]
-
-    //auxiliar = vector_dinamic(cubicRF->Side_A->rows);   //Criaçao do vetor auxiliar
     auxiliar = init(0,rows);
     
     //Preenchendo vetor auxiliar
-    for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Auxiliar = Side_E
-        auxiliar->matrix[0][i] = cubicRF->Side_E->matrix[rows][i]; //error
+    for(i = 0 ; i < cubicRF->Side_A->rows ; i++){        //Auxiliar = Side_A
+        auxiliar->matrix[0][i] = cubicRF->Side_A->matrix[rows][i]; //error
     }
 
-    for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Side_E = Side_B
-        cubicRF->Side_E->matrix[rows][i] = cubicRF->Side_B->matrix[rows][i]; //error
+    for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Side_A = Side_E
+        cubicRF->Side_A->matrix[rows][i] = cubicRF->Side_E->matrix[rows][i]; //error
     }
-    for(i = 0 ; i < cubicRF->Side_B->rows ; i++){        //Side_B = Side_F
-        cubicRF->Side_B->matrix[rows][i] = cubicRF->Side_F->matrix[rows][i]; //error
+    for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Side_E = Side_C
+        cubicRF->Side_E->matrix[rows][i] = cubicRF->Side_C->matrix[rows][i]; //error
     }
-    for(i = 0 ; i < cubicRF->Side_F->rows ; i++){        //Side_F = Side_D
-        cubicRF->Side_F->matrix[rows][i] = cubicRF->Side_D->matrix[rows][i]; //error
+    for(i = 0 ; i < cubicRF->Side_C->rows ; i++){        //Side_C = Side_F
+        cubicRF->Side_C->matrix[rows][i] = cubicRF->Side_F->matrix[rows][i]; //error
     }
-    for(i = 0 ; i < cubicRF->Side_D->rows ; i++){        //Side_D = auxiliar
-        cubicRF->Side_D->matrix[rows][i] = auxiliar->matrix[0][i]; //error
+    for(i = 0 ; i < cubicRF->Side_F->rows ; i++){        //Side_F = auxiliar
+        cubicRF->Side_F->matrix[rows][i] = auxiliar->matrix[0][i]; //error
     }
 }
 
 //------------------------------------------------------------------------------------------------------------------
 /*Rotaçao inversa no eixo Y*/
 void Y_rotation_invers(Cubic *cubicRF, long long int rows){
+    Matrix *auxiliar;
+    long long int i, j;     //Variaveis auxiliares para loop
 
+    auxiliar = init(0,rows);
+    
+    //Preenchendo vetor auxiliar
+    for(i = 0 ; i < cubicRF->Side_F->rows ; i++){        //Auxiliar = Side_F
+        auxiliar->matrix[0][i] = cubicRF->Side_F->matrix[rows][i]; //error
+    }
+
+    for(i = 0 ; i < cubicRF->Side_F->rows ; i++){        //Side_F = Side_C
+        cubicRF->Side_F->matrix[rows][i] = cubicRF->Side_C->matrix[rows][i]; //error
+    }
+    for(i = 0 ; i < cubicRF->Side_C->rows ; i++){        //Side_C = Side_E
+        cubicRF->Side_C->matrix[rows][i] = cubicRF->Side_E->matrix[rows][i]; //error
+    }
+    for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Side_E = Side_A
+        cubicRF->Side_E->matrix[rows][i] = cubicRF->Side_A->matrix[rows][i]; //error
+    }
+    for(i = 0 ; i < cubicRF->Side_A->rows ; i++){        //Side_A = auxiliar
+        cubicRF->Side_A->matrix[rows][i] = auxiliar->matrix[0][i]; //error
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------
