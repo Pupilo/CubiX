@@ -48,8 +48,8 @@ void from_rotation(Cubic *cubicRF, long long int columns){
     Matrix *auxiliar;       //Matriz auxiliar
     long long int i, j;     //Variaveis auxiliares para loop
 
-    printf("\n\nNumero de coulnas: %d\n",cubicRF->Side_A->columns );
-    printf("Numero da coluna para rotaçao: %d\n", columns);
+    printf("\n\nNumero de coulnas: %lld\n",cubicRF->Side_A->columns );
+    printf("Numero da coluna para rotaçao: %lld\n", columns);
 
     auxiliar = init(0,columns);
 
@@ -79,8 +79,8 @@ void from_rotation_invers(Cubic *cubicRF, long long int columns){
     Matrix *auxiliar;
     long long int i, j;     //Variaveis auxiliares para loop
 
-    printf("\n\nNumero de coulnas: %d\n",cubicRF->Side_A->columns );    //[DEBUG]
-    printf("Numero da coluna para rotaçao: %d\n", columns);             //[DEBUG]
+    printf("\n\nNumero de coulnas: %lld\n",cubicRF->Side_A->columns );    //[DEBUG]
+    printf("Numero da coluna para rotaçao: %lld\n", columns);             //[DEBUG]
 
     auxiliar = init(0,columns);
 
@@ -109,8 +109,8 @@ void X_rotation(Cubic *cubicRF, long long int rows){
     Matrix *auxiliar;
     long long int i, j;     //Variaveis auxiliares para loop
 
-    printf("\n\nNumero de coulnas: %d\n",cubicRF->Side_E->rows );    //[DEBUG]
-    printf("Numero da coluna para rotaçao: %d\n", rows);            //[DEBUG]
+    printf("\n\nNumero de coulnas: %lld\n",cubicRF->Side_E->rows );    //[DEBUG]
+    printf("Numero da coluna para rotaçao: %lld\n", rows);            //[DEBUG]
 
     //auxiliar = vector_dinamic(cubicRF->Side_A->rows);   //Criaçao do vetor auxiliar
     auxiliar = init(0,rows);
@@ -142,8 +142,8 @@ void X_rotation_invers(Cubic *cubicRF, long long int rows){
     Matrix *auxiliar;
     long long int i, j;     //Variaveis auxiliares para loop
 
-    printf("\n\nNumero de coulnas: %d\n",cubicRF->Side_E->rows );
-    printf("Numero da coluna para rotaçao: %d\n", rows);
+    printf("\n\nNumero de coulnas: %lld\n",cubicRF->Side_E->rows );
+    printf("Numero da coluna para rotaçao: %lld\n", rows);
 
     auxiliar = init(0,rows);
     
@@ -301,7 +301,7 @@ void save_cubic_revers(long long int size, Cubic *cubicSave){
             fwrite( &cubicSave->Side_A->matrix[i][j], sizeof(cubicSave->Side_A->matrix[i][j]) , sizeof(cubicSave->Side_A->matrix[i][j]), texto_cifrado );
             if (size_file == size){ //Modificaç~ao provisoria
                 fcloseall(texto_cifrado);
-                printf("\n Fechou o arquivo com tamanho: %d\n", size_file);
+                printf("\n Fechou o arquivo com tamanho: %lld\n", size_file);
             }
             size_file++;
         }
@@ -313,7 +313,7 @@ void save_cubic_revers(long long int size, Cubic *cubicSave){
             fwrite( &cubicSave->Side_B->matrix[i][j], sizeof(cubicSave->Side_B->matrix[i][j]) , 1, texto_cifrado );
             if (size_file == size){ //Modificaç~ao provisoria
                 fcloseall(texto_cifrado);
-                printf("\n Fechou o arquivo com tamanho: %d\n", size_file);
+                printf("\n Fechou o arquivo com tamanho: %lld\n", size_file);
             }
             size_file++;
         }
@@ -325,7 +325,7 @@ void save_cubic_revers(long long int size, Cubic *cubicSave){
             fwrite( &cubicSave->Side_C->matrix[i][j], sizeof(cubicSave->Side_C->matrix[i][j]) , 1, texto_cifrado );
             if (size_file == size){ //Modificaç~ao provisoria
                 fcloseall(texto_cifrado);
-                printf("\n Fechou o arquivo com tamanho: %d\n", size_file);
+                printf("\n Fechou o arquivo com tamanho: %lld\n", size_file);
             }
             size_file++;
         }
@@ -337,7 +337,7 @@ void save_cubic_revers(long long int size, Cubic *cubicSave){
             fwrite( &cubicSave->Side_D->matrix[i][j], sizeof(cubicSave->Side_D->matrix[i][j]) , 1, texto_cifrado );
             if (size_file == size){ //Modificaç~ao provisoria
                 fcloseall(texto_cifrado);
-                printf("\n Fechou o arquivo com tamanho: %d\n", size_file);
+                printf("\n Fechou o arquivo com tamanho: %lld\n", size_file);
             }
             size_file++;
         }
@@ -349,7 +349,7 @@ void save_cubic_revers(long long int size, Cubic *cubicSave){
             fwrite( &cubicSave->Side_E->matrix[i][j], sizeof(cubicSave->Side_E->matrix[i][j]) , 1, texto_cifrado );
             if (size_file == size){ //Modificaç~ao provisoria
                 fcloseall(texto_cifrado);
-                printf("\n Fechou o arquivo com tamanho: %d\n", size_file);
+                printf("\n Fechou o arquivo com tamanho: %lld\n", size_file);
             }
             size_file++;
         }
@@ -361,7 +361,7 @@ void save_cubic_revers(long long int size, Cubic *cubicSave){
             fwrite( &cubicSave->Side_F->matrix[i][j], sizeof(cubicSave->Side_F->matrix[i][j]) , 1, texto_cifrado );
         if (size_file == size){ //Modificaç~ao provisoria
                 fcloseall(texto_cifrado);
-                printf("\n Fechou o arquivo com tamanho: %d\n", size_file);
+                printf("\n Fechou o arquivo com tamanho: %lld\n", size_file);
             }
             size_file++;
         }
