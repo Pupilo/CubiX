@@ -11,5 +11,5 @@ Para remover os arquivos compilados:<br>
 `make clean`
 
 ###Modo de uso:
-`./main -c arquivo_de_texto_puro`<br>
-`./main -d arquivo_de_texto_criptografado`
+`./CubiX -c arquivo_de_texto_puro`<br>
+`./CubiX -d arquivo_de_texto_criptografado`
