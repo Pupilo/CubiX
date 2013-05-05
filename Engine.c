@@ -100,7 +100,7 @@ int calculate_matrix(long valor){
         printf("6. Resultado final^2 * 6: %d\n", resultado);
 
         final = resultado - valor;
-        printf("7. Quantidade de bytes lixos inseridos:%d\n",final);
+        printf("7. Quantidade de bytes lixos inseridos:%ld\n",final);
 
         resultado = sqrt(resultado/6);
         printf("8. Ordem da matriz: %d X %d\n",resultado,resultado);
@@ -232,8 +232,8 @@ void P_Matriz(long long int rows, long long int columns, Matrix *_matriz, char *
     FILE *arquivo;
 
     printf("\n[DEBUG] Preenchendo Matriz\n");  //Remover - somente para debug
-    printf("linha: %d \n", rows);               //Remover - somente para debug
-    printf("coluna: %d \n", columns);         //Remover - somente para debug
+    printf("linha: %lld \n", rows);               //Remover - somente para debug
+    printf("coluna: %lld \n", columns);         //Remover - somente para debug
     printf("Nome do arquivo: %s\n\n", argv); //Remover - somente para debug
     arquivo = fopen(argv, "r");             // abre o arquivo para leitura
   
