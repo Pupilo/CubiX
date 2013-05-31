@@ -63,6 +63,10 @@ int main(int argc, char *argv[]){
 		op = 1;
 	} else if(strcmp(argv[1],"-d") == 0) {
                 op = 2;
+        }
+      else if(strcmp(argv[1],"-h") == 0) {
+                help();
+                return 0;
         } else {
 		return -1;
 	}
@@ -74,15 +78,15 @@ int main(int argc, char *argv[]){
 				ordem_matriz = calculate_matrix(size);
 				Cubic* Cubic_Text = cubicX(ordem_matriz,texto_puro);
 				
-				showCubic(Cubic_Text);		//Matriz Original
+				//showCubic(Cubic_Text);		//Matriz Original
 
 				//Criptografia
 				from_rotation(Cubic_Text, 1);	//Rotaç~ao frontal
 				X_rotation(Cubic_Text, 1);		//Rotaç~ao horizontal
-				//Y_rotation(Cubic_Text, 1);		//Rotaç~ao vertical
+				Y_rotation(Cubic_Text, 1);		//Rotaç~ao vertical
 				
 				//Matriz Criptografada
-				showCubic(Cubic_Text);		//[DEBUG]
+				//showCubic(Cubic_Text);		//[DEBUG]
 				
 				//salvar em arquivo
 				save_cubic(Cubic_Text);
@@ -107,6 +111,7 @@ int main(int argc, char *argv[]){
 				//showCubic(Cubic_Cript);			//[DEBUG]
 
 				//Iniciando testes
+				Y_rotation_invers(Cubic_Cript, 1);		//Rotaç~ao vertical
 				X_rotation_invers(Cubic_Cript, 1);		//Rotaç~ao lateral inversa
 				from_rotation_invers(Cubic_Cript, 1);//iniciar rotaçao
 

@@ -52,6 +52,12 @@ void Y_rotation(Cubic *cubicRF, long long int rows);
 /*Rotaçao inversa no eixo Y*/
 void Y_rotation_invers(Cubic *cubicRF, long long int rows);
 
+/*Rotaçao no eixo Z*/
+void Z_rotation(Cubic *cubicRF, long long int rows);
+
+/*Rotaçao inversa no eixo Y*/
+void Z_rotation_invers(Cubic *cubicRF, long long int rows);
+
 //------------------------------------------------------------------------------------------------------------------
 /*                                            Salvar em arquivo                                                   */
 //------------------------------------------------------------------------------------------------------------------

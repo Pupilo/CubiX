@@ -24,7 +24,6 @@
 #	Vers~ao: 0.0.1
 ####################################################################################*/
 
-//1ª tela do programa
-void menu();
-
-//2ª tela do resultados
+//Telas do programa
+void banner();
+void help();

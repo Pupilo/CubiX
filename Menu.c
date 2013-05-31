@@ -27,8 +27,7 @@
 
 #include <stdio.h>
 
-void menu(){
-/*
+void banner(){
 	printf("##########################################################################\n");
 	printf("Prototipo de criptografia Rubik versao 0.1								  \n");
     printf("Defesa do Bacharelado de Ciencia da computaçao, Faculdade Ruy Barbosa     \n");
@@ -38,10 +37,15 @@ void menu(){
 	printf("Jerffeson\n");
 	printf("Willian.A.Mayan\n");
 	printf("##########################################################################\n\n");
-*/
+}
+
+void help(){
 	printf("##########################################################################\n");
-	printf("Opcoes\n");
-	printf("1- Criptografar\n");
-	printf("2- Decriptografar\n");
-	printf("##########################################################################\n\n:");
+	printf("[OPÇOES]\n\n");
+	printf("d - Criptografa o arquivo passado como argumento\n");
+	printf("c - Decriptografar o arquivo passado como argumento\n\n");
+	printf("[EXEMPLOS]\n\n");
+	printf("./CubiX -c arquivo_texto_puro\n");
+	printf("./CubiX -d arquivo_texto_cifrado\n");
+	printf("./CubiX -h help\n");
 }

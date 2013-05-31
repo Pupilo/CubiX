@@ -117,20 +117,20 @@ void X_rotation(Cubic *cubicRF, long long int rows){
     
     //Preenchendo vetor auxiliar
     for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Auxiliar = Side_E
-        auxiliar->matrix[0][i] = cubicRF->Side_E->matrix[rows][i]; //error
+        auxiliar->matrix[0][i] = cubicRF->Side_E->matrix[rows][i];
     }
 
     for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Side_E = Side_B
-        cubicRF->Side_E->matrix[rows][i] = cubicRF->Side_B->matrix[rows][i]; //error
+        cubicRF->Side_E->matrix[rows][i] = cubicRF->Side_B->matrix[rows][i];
     }
     for(i = 0 ; i < cubicRF->Side_B->rows ; i++){        //Side_B = Side_F
-        cubicRF->Side_B->matrix[rows][i] = cubicRF->Side_F->matrix[rows][i]; //error
+        cubicRF->Side_B->matrix[rows][i] = cubicRF->Side_F->matrix[rows][i];
     }
     for(i = 0 ; i < cubicRF->Side_F->rows ; i++){        //Side_F = Side_D
-        cubicRF->Side_F->matrix[rows][i] = cubicRF->Side_D->matrix[rows][i]; //error
+        cubicRF->Side_F->matrix[rows][i] = cubicRF->Side_D->matrix[rows][i];
     }
     for(i = 0 ; i < cubicRF->Side_D->rows ; i++){        //Side_D = auxiliar
-        cubicRF->Side_D->matrix[rows][i] = auxiliar->matrix[0][i]; //error
+        cubicRF->Side_D->matrix[rows][i] = auxiliar->matrix[0][i];
     }
 }
 
@@ -149,26 +149,26 @@ void X_rotation_invers(Cubic *cubicRF, long long int rows){
     
     //Preenchendo vetor auxiliar
     for(i = 0 ; i < cubicRF->Side_D->rows ; i++){        //Auxiliar = Side_D
-        auxiliar->matrix[0][i] = cubicRF->Side_D->matrix[rows][i]; //error
+        auxiliar->matrix[0][i] = cubicRF->Side_D->matrix[rows][i];
     }
 
     for(i = 0 ; i < cubicRF->Side_D->rows ; i++){        //Side_D = Side_F
-        cubicRF->Side_D->matrix[rows][i] = cubicRF->Side_F->matrix[rows][i]; //error
+        cubicRF->Side_D->matrix[rows][i] = cubicRF->Side_F->matrix[rows][i];
     }
     for(i = 0 ; i < cubicRF->Side_F->rows ; i++){        //Side_F = Side_B
-        cubicRF->Side_F->matrix[rows][i] = cubicRF->Side_B->matrix[rows][i]; //error
+        cubicRF->Side_F->matrix[rows][i] = cubicRF->Side_B->matrix[rows][i];
     }
     for(i = 0 ; i < cubicRF->Side_B->rows ; i++){        //Side_B = Side_E
-        cubicRF->Side_B->matrix[rows][i] = cubicRF->Side_E->matrix[rows][i]; //error
+        cubicRF->Side_B->matrix[rows][i] = cubicRF->Side_E->matrix[rows][i];
     }
     for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Side_E = auxiliar
-        cubicRF->Side_E->matrix[rows][i] = auxiliar->matrix[0][i]; //error
+        cubicRF->Side_E->matrix[rows][i] = auxiliar->matrix[0][i];
     }
 }
 
 //------------------------------------------------------------------------------------------------------------------
 /*Rotaçao no eixo Y
-Copia de x_rotation*/
+Revisado: 30/05/2013*/
 void Y_rotation(Cubic *cubicRF, long long int rows){
 
     Matrix *auxiliar;
@@ -177,48 +177,63 @@ void Y_rotation(Cubic *cubicRF, long long int rows){
     auxiliar = init(0,rows);
     
     //Preenchendo vetor auxiliar
-    for(i = 0 ; i < cubicRF->Side_A->rows ; i++){        //Auxiliar = Side_A
-        auxiliar->matrix[0][i] = cubicRF->Side_A->matrix[rows][i]; //error
+    for(i = 0 ; i < cubicRF->Side_A->rows ; i++){        
+        //Auxiliar = Side_A
+        auxiliar->matrix[0][i] = cubicRF->Side_A->matrix[rows][i];
     }
 
-    for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Side_A = Side_E
-        cubicRF->Side_A->matrix[rows][i] = cubicRF->Side_E->matrix[rows][i]; //error
+    for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        
+        //Side_A (linha) = Side_E (coluna)
+        cubicRF->Side_A->matrix[rows][i] = cubicRF->Side_E->matrix[i][rows];
     }
-    for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Side_E = Side_C
-        cubicRF->Side_E->matrix[rows][i] = cubicRF->Side_C->matrix[rows][i]; //error
+
+    for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        
+        //Side_E (coluna) = Side_C (linha)
+        cubicRF->Side_E->matrix[i][rows] = cubicRF->Side_C->matrix[rows][i];
     }
-    for(i = 0 ; i < cubicRF->Side_C->rows ; i++){        //Side_C = Side_F
-        cubicRF->Side_C->matrix[rows][i] = cubicRF->Side_F->matrix[rows][i]; //error
+
+    for(i = 0 ; i < cubicRF->Side_C->rows ; i++){        
+        //Side_C (linha) = Side_F (coluna)
+        cubicRF->Side_C->matrix[rows][i] = cubicRF->Side_F->matrix[i][rows];
     }
-    for(i = 0 ; i < cubicRF->Side_F->rows ; i++){        //Side_F = auxiliar
-        cubicRF->Side_F->matrix[rows][i] = auxiliar->matrix[0][i]; //error
+    for(i = 0 ; i < cubicRF->Side_F->rows ; i++){        
+        //Side_F (coluna) = auxiliar
+        cubicRF->Side_F->matrix[i][rows] = auxiliar->matrix[0][i];
     }
 }
 
 //------------------------------------------------------------------------------------------------------------------
-/*Rotaçao inversa no eixo Y*/
+/*Rotaçao inversa no eixo Y
+Revisado: 30/05/2013*/
 void Y_rotation_invers(Cubic *cubicRF, long long int rows){
     Matrix *auxiliar;
     long long int i, j;     //Variaveis auxiliares para loop
 
     auxiliar = init(0,rows);
-    
+
     //Preenchendo vetor auxiliar
-    for(i = 0 ; i < cubicRF->Side_F->rows ; i++){        //Auxiliar = Side_F
-        auxiliar->matrix[0][i] = cubicRF->Side_F->matrix[rows][i]; //error
+    for(i = 0 ; i < cubicRF->Side_F->rows ; i++){        
+        //Auxiliar = Side_F
+        auxiliar->matrix[0][i] = cubicRF->Side_F->matrix[i][rows]; 
     }
 
-    for(i = 0 ; i < cubicRF->Side_F->rows ; i++){        //Side_F = Side_C
-        cubicRF->Side_F->matrix[rows][i] = cubicRF->Side_C->matrix[rows][i]; //error
+    for(i = 0 ; i < cubicRF->Side_F->rows ; i++){        
+        //Side_F(coluna) = Side_C (linha)
+        cubicRF->Side_F->matrix[i][rows] = cubicRF->Side_C->matrix[rows][i];
     }
-    for(i = 0 ; i < cubicRF->Side_C->rows ; i++){        //Side_C = Side_E
-        cubicRF->Side_C->matrix[rows][i] = cubicRF->Side_E->matrix[rows][i]; //error
+    for(i = 0 ; i < cubicRF->Side_C->rows ; i++){        
+        //Side_C (linha) = Side_E (coluna)
+        cubicRF->Side_C->matrix[rows][i] = cubicRF->Side_E->matrix[i][rows];
     }
-    for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        //Side_E = Side_A
-        cubicRF->Side_E->matrix[rows][i] = cubicRF->Side_A->matrix[rows][i]; //error
+
+    for(i = 0 ; i < cubicRF->Side_E->rows ; i++){        
+        //Side_E (coluna) = Side_A (linha)
+        cubicRF->Side_E->matrix[i][rows] = cubicRF->Side_A->matrix[rows][i];
     }
-    for(i = 0 ; i < cubicRF->Side_A->rows ; i++){        //Side_A = auxiliar
-        cubicRF->Side_A->matrix[rows][i] = auxiliar->matrix[0][i]; //error
+
+    for(i = 0 ; i < cubicRF->Side_A->rows ; i++){        
+        //Side_A = auxiliar
+        cubicRF->Side_A->matrix[rows][i] = auxiliar->matrix[0][i];
     }
 }
 

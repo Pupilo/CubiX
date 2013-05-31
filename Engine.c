@@ -1,4 +1,4 @@
-/*################################################################################################
+    /*################################################################################################
 	<Magic Cube transforma um arquivo em seis matrizes alocadas na memoria, tendo como principio
     o cubo magico, executa rotaçoes de forma criptografar o arquivo, a saida e um arquivo encriptado
     que possui como chave a sequencia de desembaralhamento reversa que foi executada.>
@@ -45,7 +45,7 @@ int treatment(int argc, char **argv){
     }
     else
     {
-        printf("\nCubiX usage: ./main [-c | -d] filename");
+       printf("\nCubiX usage: ./main [-c | -d] filename\n-h help\n");
 	exit(0);
     }
 }
