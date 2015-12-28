@@ -24,6 +24,11 @@
 #	Vers~ao: 0.0.1
 ####################################################################################*/
 
+#ifndef _MENU_H_
+#define _MENU_H_
+
 //Telas do programa
 void banner();
 void help();
+
+#endif /* _MENU_H_ */
