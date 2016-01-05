@@ -30,6 +30,10 @@
 //Lib standart
 #include <stdio.h>
 #include <stdlib.h>
+
+#include <sys/types.h>
+#include <sys/stat.h>
+
 #include <math.h>
 #include <unistd.h>
 
@@ -46,29 +50,22 @@ int treatment(int argc, char **argv){
     else
     {
        printf("\nCubiX usage: ./main [-c | -d] filename\n-h help\n");
-	exit(0);
+       exit(0);
     }
 }
 
 //------------------------------------------------------------------------------------------------------------------
 /*Funç~ao que calcula o tamanho do arquivo em bytes*/
-int file_size(char *argv){
-
-    FILE *arquivo;                                      // ponteiro para o arquivo
-    long tamanho;                                       // tamanho em bytes do arquivo
-    printf("Arquivo: %s\n",argv);                       //Pode ser removido
-    arquivo = fopen(argv, "r");					        // abre o arquivo para leitura
-    
-    if (arquivo != NULL) {            					// verifica se o arquivo foi aberto com sucesso
-            fseek(arquivo, 0, SEEK_END);				// movimenta a posição corrente de leitura no arquivo para o seu fim
-            tamanho = ftell(arquivo);					// pega a posição corrente de leitura no arquivo       
-            printf("O arquivo %s possui %ld bytes\n",argv, tamanho);	// imprime o tamanho do arquivo
-
-    } 
-    else {
-        printf("Arquivo inexistente \n");
+long file_size(char *argv){    
+    struct stat st;
+    if (stat(argv, &st)) {
+        perror("Opening the file");
+        return 0;
     }
-return tamanho;
+
+    printf ("O arquivo %s possui %ld bytes\n", argv, st.st_size);
+
+    return st.st_size;
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -151,12 +148,12 @@ void showCubic(Cubic *cubicRF){
 Matrix* init(const int row, const int column){
   
   int i;
-  Matrix* matriz = (Matrix*) malloc(1*sizeof(Matrix));
+  Matrix* matriz = (Matrix*) calloc(1, sizeof(Matrix));
   
-  matriz->matrix = (char**) malloc(row * sizeof(char*));
+  matriz->matrix = (char**) calloc(row,  sizeof(char*));
   
   for(i=0; i<column; i++)
-    matriz->matrix[i] = (char*) malloc(column * sizeof(char));
+    matriz->matrix[i] = (char*) calloc(column, sizeof(char));
 
   matriz->rows = row;
   matriz->columns = column;
@@ -169,7 +166,7 @@ Matrix* init(const int row, const int column){
 Cubic* cubicX(long long int ordem, char *argv){
 
     FILE *pointer;
-    Cubic* cubo = (Cubic*) malloc(1*sizeof(Cubic));
+    Cubic* cubo = (Cubic*) calloc(1, sizeof(Cubic));
 
     //printf("\nCriaçao do Cubo\n"); //REMOVER
 
@@ -200,7 +197,7 @@ Cubic* cubicX(long long int ordem, char *argv){
 
 
 
-return cubo;
+    return cubo;
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -237,7 +234,7 @@ void P_Matriz(long long int rows, long long int columns, Matrix *_matriz, char *
     printf("Nome do arquivo: %s\n\n", argv); //Remover - somente para debug
     arquivo = fopen(argv, "r");             // abre o arquivo para leitura
   
-    fseek(arquivo,0,SEEK_SET);                //Posiciona o ponteiro do arquivo no inicio do arquivo
+    rewind(arquivo);
 
     for(i = 0 ; i < columns; i++){
         for(j = 0 ; j < rows; j++){

@@ -26,6 +26,9 @@
 # 	Versao: 0.0.4
 ####################################################################################*/
 
+#ifndef _ENGINE_H_
+#define _ENGINE_H_
+
 //My structs
 /*##################################
 	Estrutura da matriz dinamica 
@@ -62,7 +65,7 @@ typedef struct Cubic
 int treatment(int argc, char **argv);
 
 /*Funç~ao que calcula o tamanho do arquivo em bytes, recebe o nome do arquivo como parametro*/
-int file_size(char *argv);		//============> mudar argv para n_arquivo
+long file_size(char *argv);		//============> mudar argv para n_arquivo
 
 /*Funç~ao que recebe um valor como parametro e calcula a quantidade de bytes para uma matriz quadrada perfeita*/
 int calculate_matrix(long valor);   /*Revis~ao realizada em 23 fev 2013*/
@@ -90,3 +93,5 @@ Cubic* cubicX(long long int ordem, char *argv);
 
 /*Funç~ao que preenche matrizes recebendo um ponteiro para o arquivo, retorna um ponteiro de arquivo*/
 FILE* P_cubicX(FILE *pointer, Matrix *matriX, long long int ordem);
+
+#endif /* _ENGINE_H_ */
