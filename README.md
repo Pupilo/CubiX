@@ -1,7 +1,7 @@
 CubiX
 =====
 
-Cubix é um algoritmo de criptografia baseado no cubo de Rubik, onde transforma arquivos em uma representação de cubo utilizando matrizes. Se encontra em desenvolvimento, não estavel..
+Cubix é um algoritmo de criptografia baseado no cubo de Rubik, onde transforma arquivos em uma representação de cubo utilizando matrizes. Se encontra em desenvolvimento, não estavel.
 
 ###Modo de compilação:
 Para compilar:<br>
